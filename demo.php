@@ -12,13 +12,14 @@ if ($conn->connect_error) {
 }
 
 $sql = "INSERT INTO userinterface (firstname, lastname, email)
-VALUES ('John', 'Doe', 'john@example.com')";
+VALUES ('John', 'Doe', 'john@example.com');";
 $sql = "INSERT INTO userinterface (firstname, lastname, email)
-VALUES ('Sajib', 'Sarker', 'sajibsarker1104003@gmail.com')";
+VALUES ('Sajib', 'Sarker', 'sajib@example.com');";
+$sql = "INSERT INTO userinterface (firstname, lastname, email)
+VALUES ('Julie', 'Dooley', 'julie@example.com')";
 
-if ($conn->query($sql) === TRUE) {
-  $last_id = $conn->insert_id;
-  echo "New record created successfully. Last inserted ID is: " . $last_id;
+if ($conn->multi_query($sql) === TRUE) {
+  echo "New records created successfully";
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
